@@ -43,13 +43,13 @@ async fn main() -> Result<(), reqwest::Error> {
 
 fn init_mailer(ip: &String) { //the function that actually sends the emails. 
     let email = Message::builder()
-        .from("rust.imailip@gmail.com".parse().unwrap())
-        .to("lanson.noah@gmail.com".parse().unwrap())
+        .from("<<<<SENDER EMAIL HERE>>>>".parse().unwrap()) //fill
+        .to("<<<<RECIPIENT EMAIL HERE>>>>".parse().unwrap()) //fill
         .subject("init ip")
         .body(ip)
         .unwrap();
 
-    let creds = Credentials::new("rust.imailip@gmail.com".to_string(), "!U;8$:nsJhuKs4g^".to_string());
+    let creds = Credentials::new("<<<<SENDER EMAIL HERE>>>>".to_string(), "<<<<SENDER PASSWORD HERE>>>>".to_string()); //fill
 
     // Open a remote connection to gmail
     let mailer = SmtpTransport::relay("smtp.gmail.com")
@@ -66,13 +66,13 @@ fn init_mailer(ip: &String) { //the function that actually sends the emails.
 
 fn mail_ip(ip: &String) { //the function that actually sends the emails. 
     let email = Message::builder()
-        .from("rust.imailip@gmail.com".parse().unwrap())
-        .to("lanson.noah@gmail.com".parse().unwrap())
+        .from("<<<<SENDER EMAIL HERE>>>>".parse().unwrap())
+        .to("<<<<RECIPIENT EMAIL HERE>>>>".parse().unwrap())
         .subject("Your IP has changed to:")
         .body(ip)
         .unwrap();
 
-    let creds = Credentials::new("rust.imailip@gmail.com".to_string(), "!U;8$:nsJhuKs4g^".to_string());
+    let creds = Credentials::new("<<<<SENDER EMAIL HERE>>>>".to_string(), "<<<<SENDER PASSWORD HERE>>>>".to_string()); //fill
 
     // Open a remote connection to gmail
     let mailer = SmtpTransport::relay("smtp.gmail.com")
