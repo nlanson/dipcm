@@ -16,19 +16,24 @@ async fn main() -> Result<(), reqwest::Error> {
 
     init_mailer(&curr_ip);
 
-    let day = time::Duration::from_secs(3600); //Change the length here to customise how often to check IP change.
+    let wait = time::Duration::from_secs(5); //Change the length here to customise how often to check IP change.
+    let mut i: u32 = 0;
     loop {
-        thread::sleep(day);
+        thread::sleep(wait);
         let client = reqwest::Client::new();
         let res = client.get("http://api.ipify.org/").send().await?;
         let mut new_ip = res.text().await?;
         
+
         if new_ip != curr_ip {
-            println!("Your IP has changed! Sound the alarms!!!");
+            i = i + 1;
+            println!("{}: Your IP has changed! Sound the alarms!!!", i);
             mail_ip(&new_ip);
             curr_ip = new_ip;
+            continue
         } else{
-            println!("Your IP is still the same.");
+            i = i + 1;
+            println!("{}: Your IP is still the same.", i);
             continue
         }
     }
