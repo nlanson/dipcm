@@ -1,0 +1,1 @@
+wapic is a dipcm varient that notifies users when their website is down. 
